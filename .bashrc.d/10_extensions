@@ -1,13 +1,1 @@
-EXTENSIONS_DIR=~/Extensions
-
-# Load extensions
-for EXTENSION in $(find $EXTENSIONS_DIR -maxdepth 1 -type d);
-do
-    # Use custom loader if available
-    if [ -f $EXTENSION/.bashrc ]; then
-        source $EXTENSION/.bashrc
-    # otherwise just add it to the path
-    else
-        PATH=$PATH:$EXTENSION
-    fi
-done
+dotfiles extend ~/Extensions

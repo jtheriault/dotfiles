@@ -17,10 +17,27 @@ dotfiles() {
         "track" )
             _dotfiles_track
             ;;
+        "extend" )
+            _dotfiles_extend $2
+            ;;
         * )
             echo "Unknown option: $1"
             ;;
     esac
+}
+
+_dotfiles_extend() {
+    EXTENSION_PATH=$1
+    for EXTENSION in $(find $EXTENSION_PATH -maxdepth 1 -type d);
+    do
+        # Use custom loader if available
+        if [ -f $EXTENSION/.bashrc ]; then
+            source $EXTENSION/.bashrc
+        # otherwise just add it to the path
+        else
+            PATH=$PATH:$EXTENSION
+        fi
+    done
 }
 
 _dotfiles_notrack() {
