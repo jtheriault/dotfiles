@@ -27,3 +27,6 @@ ssh_ensure_agent_and_ssh() {
 }
 
 alias ssh='ssh_ensure_agent_and_ssh'
+
+# Attach to agent by default
+ssh_ensure_agent
