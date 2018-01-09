@@ -32,6 +32,9 @@ set statusline+=%l:%c   " cursor line:column
 set hlsearch  "think: highlighted search
 map <silent> <Esc> :noh<CR>
 
+" Visual: Syntax highlighting
+autocmd BufReadPost *.html.js set syntax=html
+
 " Editing: Save me from myself
 if has('persistent_undo')
     set undofile
@@ -71,6 +74,7 @@ map <C-n> :NERDTreeToggle <CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode=2
 runtime ~/.vim/bundle/nerdtree-git-plugin/nerdtree_plugin/git_status.vim
+autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p " Refresh on writes
 
 " Plugins: JsDoc
 let g:jsdoc_allow_input_prompt=1
