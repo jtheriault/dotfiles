@@ -21,7 +21,13 @@ dotfiles() {
             _dotfiles_extend $2
             ;;
         * )
-            echo "Unknown option: $1"
+            printf "Unknown option: $1\n\n"
+            printf "Usage: dotfiles <cmd> [args]\n\n"
+            printf "\textend\t\tSource the .bashrc in the argument directory if present; otherwise add it to path\n"
+            printf "\tnotrack\t\tDisable git tracking\n"
+            printf "\ttrack\t\tEnable git tracking\n"
+            printf "\tupgrade\t\tGet the latest from git\n"
+            echo
             ;;
     esac
 }
