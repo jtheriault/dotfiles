@@ -1,9 +1,13 @@
-cd_nvm() { 
-    cd $@
-
+nvm_use_if() {
     if [ -f .nvmrc ]; then 
         nvm use
     fi
 }
 
+cd_nvm() { 
+    cd $@
+    nvm_use_if
+}
+
 alias cd="cd_nvm"
+nvm_use_if
