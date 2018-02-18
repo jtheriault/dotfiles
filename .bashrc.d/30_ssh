@@ -1,17 +1,12 @@
 SSH_AGENT_SETUP=~/.ssh_agent
 
 ssh-agent-attach() {
-    if [ ! -f $SSH_AGENT_SETUP ]; then
-        echo "No saved ssh-agent was found. Starting/saving a new one."
-        ssh-agent -s > $SSH_AGENT_SETUP
+    if [ -f $SSH_AGENT_SETUP ]; then
+        source $SSH_AGENT_SETUP 
     fi
 
-    source $SSH_AGENT_SETUP 
-    
     if ! ps -p $SSH_AGENT_PID &>/dev/null; then
-        echo "Saved ssh agent not available. Starting/saving a new one."
         ssh-agent -s > $SSH_AGENT_SETUP
-
         source $SSH_AGENT_SETUP 
 
         for key in $(ls ~/.ssh/*.pub); do 
@@ -21,18 +16,9 @@ ssh-agent-attach() {
 }
 
 ssh-agent-detach() {
-    echo "Killing all running ssh-agents"
+    ssh-agent -k
     rm $SSH_AGENT_SETUP
-    kill $SSH_AGENT_PID
 }
-
-ssh-agent-attach-and-ssh() {
-    ssh-agent-attach
-
-    ssh $@
-}
-
-alias ssh='ssh-agent-attach-and-ssh'
 
 # Attach to agent by default
 ssh-agent-attach
