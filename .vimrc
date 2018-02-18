@@ -19,7 +19,7 @@ set cursorline
 " Visual: Statusline
 set laststatus=2        " always show statusline
 
-set statusline=%n\ 
+set statusline=%n\
 set statusline+=%F       " base of the filename
 set statusline+=%m      " modified flag
 set statusline+=%h      " help file flag
@@ -48,6 +48,9 @@ set autoindent
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+" Editing: Remove trailing spaces
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Editing: Omnicomplete
 filetype plugin on
@@ -78,6 +81,5 @@ autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p " Refresh o
 
 " Plugins: JsDoc
 let g:jsdoc_allow_input_prompt=1
-let g:jsdoc_input_description=1 
+let g:jsdoc_input_description=1
 let g:jsdoc_param_description_separator=' - '
-nmap <silent> <C-S-d> $?function<cr>:noh<cr><Plug>(jsdoc)
