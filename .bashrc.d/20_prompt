@@ -58,4 +58,12 @@ elif [ "$HOST_CAUTION_LEVEL" = "SAFE" ]; then
     HOST_FORMAT=$FORMAT_COLOR_GREEN
 fi
 
-PROMPT_COMMAND='PS1="$(exit_code_mark) $HOST_FORMAT\h$FORMAT_RESET:\w $(git_branch)$(git_status_short)$ "'
+long_prompt() {
+    PROMPT_COMMAND='PS1="$(exit_code_mark) $HOST_FORMAT\h$FORMAT_RESET:\w $(git_branch)$(git_status_short)$ "'
+}
+
+short_prompt() {
+    PROMPT_COMMAND='PS1="$(exit_code_mark) $HOST_FORMAT\$$FORMAT_RESET "'
+}
+
+long_prompt
