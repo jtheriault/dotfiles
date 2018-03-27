@@ -1,11 +1,11 @@
 nvm_use_if() {
-    if [ -f .nvmrc ]; then 
+    if [ -f .nvmrc ]; then
         nvm use
     fi
 }
 
-cd_nvm() { 
-    cd $@
+cd_nvm() {
+    cd "$@"
     nvm_use_if
 }
 
