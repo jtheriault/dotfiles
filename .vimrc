@@ -51,6 +51,8 @@ set expandtab
 
 " Editing: Remove trailing spaces
 autocmd BufWritePre * :%s/\s\+$//e
+noeol
+nofixeol
 
 " Editing: Omnicomplete
 filetype plugin on
@@ -77,7 +79,7 @@ map <C-n> :NERDTreeToggle <CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode=2
 runtime ~/.vim/bundle/nerdtree-git-plugin/nerdtree_plugin/git_status.vim
-autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p " Refresh on writes
+"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p " Refresh on writes
 
 " Plugins: JsDoc
 let g:jsdoc_allow_input_prompt=1
