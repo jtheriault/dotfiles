@@ -51,8 +51,6 @@ set expandtab
 
 " Editing: Remove trailing spaces
 autocmd BufWritePre * :%s/\s\+$//e
-noeol
-nofixeol
 
 " Editing: Omnicomplete
 filetype plugin on
