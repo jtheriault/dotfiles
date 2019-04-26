@@ -1,0 +1,75 @@
+#!/bin/bash
+set -e
+
+generate_key() {
+    openssl genrsa > ${1%%.key}.key
+}
+
+make_csr() {
+    openssl req -new -sha256 -key $1 -out ${1%%.key}.csr
+}
+
+inspect_file() {
+    openssl x509 -in $1 -noout -text
+}
+
+inspect_host() {
+    URL=$1
+    if [[ "$1" != *":"* ]]; then
+        URL=$1:443
+    fi
+
+    openssl s_client -showcerts -connect $URL
+}
+
+print_usage() {
+    printf "Usage: b0rkssl <command> [argument]\n\n"
+    printf "A simple wrapper around openssl inspired by the OpenSSL comic by https://twitter.com/b0rk\n\n"
+    printf "\tCommands\n\n"
+    printf "\tcsr\t\t<file>\t\tMake a CSR using the provided file as a key\n"
+    printf "\tgenerate\t<filename.key>\tGenerate an RSA key suitable for making a CSR into filename\n"
+    printf "\tinspect\t\t<file|host>\tShow details of the certificate file or presented by the host (domain and port)\n\n"
+}
+
+while [[ $# -gt 0 ]]
+do
+COMMAND="$1"
+shift
+
+case $COMMAND in
+    inspect|show|view)
+        if [ -z "$1" ]; then print_usage; exit 1; fi
+        ARG=$1
+        shift
+
+        if [ -f $ARG ]; then
+            inspect_file $ARG
+        else
+            inspect_host $ARG
+        fi
+        ;;
+    generate|key|rsa|genrsa)
+        if [ -z "$1" ]; then print_usage; exit 1; fi
+        ARG=$1
+        shift
+
+        generate_key $ARG
+        ;;
+    make|csr)
+        if [ -z "$1" ]; then print_usage; exit 1; fi
+        ARG=$1
+        shift
+
+        make_csr $ARG
+        ;;
+    help)
+        print_usage
+        exit 0
+        ;;
+    *)
+        echo 'Unknown command: $COMMAND'
+        print_usage
+        exit 1
+        ;;
+esac
+done
