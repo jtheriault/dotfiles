@@ -12,3 +12,4 @@ startup_message off
 termcapinfo xterm* ti@:te@
 defscrollback 10000
 
+source .screen_layout
