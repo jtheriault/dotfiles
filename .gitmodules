@@ -23,3 +23,6 @@
 [submodule "Extensions/rsync-time-backup/rsync-time-backup"]
 	path = Extensions/rsync-time-backup
 	url = https://github.com/laurent22/rsync-time-backup.git
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
