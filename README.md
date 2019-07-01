@@ -20,15 +20,19 @@ source .bashrc
 ```
 
 ## Configuration
+
 ### Bash
+
 This installs an extensible .bashrc system which loads spreads configuration 
 across separate files in the ~/.bashrc.d/ directory.
 
 ### NVM
+
 This installs and loads nvm into each running shell to provide whatever node
 version is correct for my work.
 
 ### Vim
+
 A significant aspect of this repo is establishing my preferred VIM environment.
 
 In addition to setting core configuration values for key mappings, the status 
@@ -44,16 +48,15 @@ plugins.
 * Syntasic
 
 #### Syntastic
-In order for this syntax checker to work, it depends on external tools for each
-language to be available in the $PATH. 
 
-Ones of particular interest to me include:
-* JSCS
-* JSHint
+In order for this syntax checker to work, it depends on external tools for each
+language to be available in the $PATH. This will install those already configured
+in .vimrc:
 
 ```bash
-sudo npm install -g jshint jscs
+npm i -g dockerfile_lint eslint js-yaml stylelint
 ```
 ### GNU Screen
+
 GNU screen is also a notable tool in my workflow. My default configuration is
 included here and references to it in scripts may arise.
