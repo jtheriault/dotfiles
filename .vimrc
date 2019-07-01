@@ -91,5 +91,5 @@ let g:syntastic_javascript_checkers = ["eslint"]            " npm i -g eslint
 let g:syntastic_json_checkers = ["eslint"]                  " npm i -g eslint
 let g:syntastic_python_checkers = ["python"]
 let g:syntastic_sass_checkers = ["stylelint"]
-let g:syntastic_sh_checkers = ["shellcheck"]
+let g:syntastic_sh_checkers = ["shellcheck"]                " apt-get install shellcheck || brew install shellcheck
 let g:syntastic_yaml_checkers = ["jsyaml"]
