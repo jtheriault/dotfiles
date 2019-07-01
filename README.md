@@ -1,9 +1,9 @@
-# Common Environment 
+# Common Environment
 Configuration and tooling for the CLI environment that I expect to be common on
 all my workstations is managed as a git repository.
 
 ## Getting set up
-Making this repository somewhat unusual is the intention for it to act as the 
+Making this repository somewhat unusual is the intention for it to act as the
 home folder and its use of git submodules.
 
 The following steps are an example of how to install it.
@@ -23,7 +23,7 @@ source .bashrc
 
 ### Bash
 
-This installs an extensible .bashrc system which loads spreads configuration 
+This installs an extensible .bashrc system which loads spreads configuration
 across separate files in the ~/.bashrc.d/ directory.
 
 ### NVM
@@ -35,7 +35,7 @@ version is correct for my work.
 
 A significant aspect of this repo is establishing my preferred VIM environment.
 
-In addition to setting core configuration values for key mappings, the status 
+In addition to setting core configuration values for key mappings, the status
 line and actual text editing behavior, this installs a number of helpful
 plugins.
 
@@ -55,7 +55,12 @@ in .vimrc:
 
 ```bash
 npm i -g dockerfile_lint eslint js-yaml stylelint
+
+if which apt-get > /dev/null; then apt-get install shellcheck; fi
+if which brew > /dev/null; then brew install shellcheck; fi
 ```
+
+
 ### GNU Screen
 
 GNU screen is also a notable tool in my workflow. My default configuration is
