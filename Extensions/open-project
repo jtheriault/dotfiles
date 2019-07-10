@@ -1,0 +1,27 @@
+#!/bin/bash
+PROJECT=$1
+
+# Resolve project to path (if not one already)
+if [ -d "$PROJECT" ]; then
+    PROJECT_PATH=$1
+else
+    PROJECT_PATH=~/Code/$PROJECT
+fi
+
+# Change to project context
+cd "$PROJECT_PATH" || exit 1
+
+# Project-type Steps
+PROJECT_TYPE=plain
+if [ -f package.json ]; then
+    PROJECT_TYPE=npm
+    npm ci
+fi
+
+# Start editor (GUI 1st, then fail to default)
+gvim || $EDITOR
+
+# Start screen
+[ ! -f .screen_layout ] && [ -f ~/.screen_layouts/$PROJECT_TYPE ] && cp ~/.screen_layouts/$PROJECT_TYPE ./.screen_layout
+screen
+
