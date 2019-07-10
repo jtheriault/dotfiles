@@ -1,0 +1,22 @@
+split -v
+resize 180
+title start
+screen
+stuff "npm start^m"
+split
+resize 10
+
+focus
+title test
+screen
+stuff "npm run test:live^m"
+
+focus
+split
+title status
+screen
+stuff "watch git status^m"
+focus
+
+screen
+stuff "short_prompt^m^l"

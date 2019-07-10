@@ -9,6 +9,8 @@
 !/.bashrc.d/
 !/.bashrc.d/*
 !.screenrc
+!.screen_layouts/
+!.screen_layouts/*
 !.toprc
 
 # oh VIM! definitely VIM. That's mostly what we're here for.
