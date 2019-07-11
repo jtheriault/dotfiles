@@ -64,4 +64,9 @@ if which brew > /dev/null; then brew install shellcheck; fi
 ### GNU Screen
 
 GNU screen is also a notable tool in my workflow. My default configuration is
-included here and references to it in scripts may arise.
+included here as is a [folder of common layouts](.screen_layouts/) that the
+default configuration will use automatically if found in the CWD.
+
+These layouts are placed automatically when used with the include
+[open-project](Extensions/open-project) tool I use to spin up my standard
+development environment.
