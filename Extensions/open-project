@@ -1,5 +1,9 @@
 #!/bin/bash
 PROJECT=$1
+START_EDITOR=true
+if [ "$2" = "--no-vim" ]; then
+    START_EDITOR=false
+fi
 
 # Resolve project to path (if not one already)
 if [ -d "$PROJECT" ]; then
@@ -21,8 +25,10 @@ if [ -f package.json ]; then
     npm ci
 fi
 
-# Start editor (GUI 1st, then fail to default)
-gvim || $EDITOR
+if [ "$START_EDITOR" = "true" ]; then
+    # Start editor (GUI 1st, then fail to default)
+    gvim || $EDITOR
+fi
 
 # Start screen
 [ ! -f .screen_layout ] && [ -f ~/.screen_layouts/$PROJECT_TYPE ] && cp ~/.screen_layouts/$PROJECT_TYPE ./.screen_layout
