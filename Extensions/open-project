@@ -11,6 +11,9 @@ fi
 # Change to project context
 cd "$PROJECT_PATH" || exit 1
 
+# Set terminal title
+echo -ne "\033]0;$(basename "$PWD")\007"
+
 # Project-type Steps
 PROJECT_TYPE=plain
 if [ -f package.json ]; then
