@@ -27,6 +27,8 @@ is_git_repo() {
 git_branch() {
     if is_git_repo; then
         DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/$(git remote show)/HEAD | cut -d '/' -f4)
+        DEFAULT_BRANCH=${DEFAULT_BRANCH:-master}
+
         BRANCH=$(git branch | grep '*' | awk '{print $2}')
 
         if [ "$BRANCH" != "$DEFAULT_BRANCH" ]; then
