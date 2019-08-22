@@ -17,9 +17,15 @@ git submodule init
 git submodule update
 mkdir -p .vim/autoload
 source .bashrc
+dotfiles notrack
 ```
 
 ## Configuration
+
+### `dotfiles`
+
+This custom command is available for upgrades, turning git tracking on and 
+off, and incorporating extension directories into the environment.
 
 ### Bash
 
