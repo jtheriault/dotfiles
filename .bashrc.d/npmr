@@ -1,11 +1,17 @@
-npmr() { 
-    COMMAND=$@
-
-    for MODULE in $(find . -maxdepth 2 -type f -name package.json -exec dirname \{} \;); 
-    do 
+for-npm() {
+    for MODULE in $(ls-npm);
+    do
         pushd $MODULE >> /dev/null
         echo "---- $MODULE ----"
-        npm $COMMAND
+        "$@"
         popd >> /dev/null
-    done 
+    done
+}
+
+ls-npm() {
+    find . -maxdepth 2 -type f -name package.json -exec dirname \{} \;
+}
+
+npmr() {
+    for-npm npm "$@"
 }

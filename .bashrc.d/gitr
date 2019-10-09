@@ -1,11 +1,17 @@
-gitr() { 
-    COMMAND=$@
-
-    for REPO in $(find . -maxdepth 2 -type d -name .git -exec dirname \{} \;); 
-    do 
+for-git() {
+    for REPO in $(ls-git);
+    do
         pushd $REPO >> /dev/null
         echo "---- $REPO ----"
-        git $COMMAND
+        "$@"
         popd >> /dev/null
-    done 
+    done
+}
+
+gitr() {
+    for-git git "$@"
+}
+
+ls-git() {
+    find . -maxdepth 2 -type d -name .git -exec dirname \{} \;
 }
