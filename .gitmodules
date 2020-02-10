@@ -10,7 +10,7 @@
 	branch = master
 [submodule ".vim/bundle/nerdtree-git-plugin"]
 	path = .vim/bundle/nerdtree-git-plugin
-	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git 
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
@@ -27,5 +27,5 @@
 	path = .vim/bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule "/home/jtheriault/.vim/bundle/rust.vim"]
-	path = /home/jtheriault/.vim/bundle/rust.vim
+	path = .vim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
