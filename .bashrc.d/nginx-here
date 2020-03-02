@@ -1,0 +1,6 @@
+nginx-here() {
+    # Assure sudo status
+    sudo true &&
+    echo "Serving local directory at http://localhost:8080" &&
+    sudo docker run --name nginx-here -p 8080:80 --rm -v $PWD:/usr/share/nginx/html:ro nginx
+}
