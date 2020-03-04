@@ -75,6 +75,7 @@ Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/syntastic'
+Plug 'schickling/vim-bufonly'
 
 " Plugins: Pathogen
 execute pathogen#infect()
