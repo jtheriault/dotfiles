@@ -5,9 +5,6 @@
 	path = Extensions/nvm/nvm
 	url = https://github.com/creationix/nvm.git
 	branch = master
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/vim-jsdoc"]
 	path = .vim/bundle/vim-jsdoc
 	url = https://github.com/heavenshell/vim-jsdoc.git
