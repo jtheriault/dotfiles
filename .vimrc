@@ -78,9 +78,6 @@ Plug 'scrooloose/syntastic'
 Plug 'schickling/vim-bufonly'
 Plug 'rust-lang/rust.vim'
 
-" Plugins: Pathogen
-execute pathogen#infect()
-
 " Plugins: CtrlP
 let g:ctrlp_by_filename = 1
 let g:ctrlp_clear_cache_on_exit = 0
