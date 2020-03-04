@@ -89,11 +89,6 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:25'
 
-" Plugins: JsDoc
-let g:jsdoc_allow_input_prompt=1
-let g:jsdoc_input_description=1
-let g:jsdoc_param_description_separator=' - '
-
 " Plugins: NERDTree
 map <C-n> :NERDTreeToggle <CR>
 let g:NERDTreeShowHidden = 1

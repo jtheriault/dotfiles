@@ -2,9 +2,6 @@
 	path = Extensions/nvm/nvm
 	url = https://github.com/creationix/nvm.git
 	branch = master
-[submodule ".vim/bundle/vim-jsdoc"]
-	path = .vim/bundle/vim-jsdoc
-	url = https://github.com/heavenshell/vim-jsdoc.git
 [submodule ".vim/bundle/vim-pug"]
 	path = .vim/bundle/vim-pug
 	url = https://github.com/digitaltoad/vim-pug.git
