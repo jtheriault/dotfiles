@@ -71,9 +71,9 @@ call plug#begin()
 " Plugins: vim-plug <<<
 call plug#end()
 
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'davidhalter/jedi-vim'
 
 " Plugins: Pathogen
 execute pathogen#infect()
