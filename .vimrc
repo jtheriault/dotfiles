@@ -77,6 +77,14 @@ Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/syntastic'
 Plug 'schickling/vim-bufonly'
 Plug 'rust-lang/rust.vim'
+Plug 'heavenshell/vim-jsdoc'
+
+" Plugins: NERDTree
+map <C-n> :NERDTreeToggle <CR>
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeChDirMode=2
+runtime ~/.vim/bundle/nerdtree-git-plugin/nerdtree_plugin/git_status.vim
+"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p " Refresh on writes
 
 " Plugins: CtrlP
 let g:ctrlp_by_filename = 1
@@ -87,13 +95,6 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:25'
 
-" Plugins: NERDTree
-map <C-n> :NERDTreeToggle <CR>
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeChDirMode=2
-runtime ~/.vim/bundle/nerdtree-git-plugin/nerdtree_plugin/git_status.vim
-"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p " Refresh on writes
-
 " Plugins: Syntastic
 let g:syntastic_css_checkers = ["stylelint"]                " npm i -g stylelint
 let g:syntastic_dockerfile_checkers = ["dockerfile_lint"]   " npm i -g dockerfile_lint
@@ -103,3 +104,10 @@ let g:syntastic_python_checkers = ["python"]
 let g:syntastic_sass_checkers = ["stylelint"]
 let g:syntastic_sh_checkers = ["shellcheck"]                " apt-get install shellcheck || brew install shellcheck
 let g:syntastic_yaml_checkers = ["jsyaml"]
+
+" Plugins: JSDoc
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_param_description_separator = '-'
+let g:jsdoc_enable_es6 = 1
+nmap <silent> <C-l> <Plug>(jsdoc)
