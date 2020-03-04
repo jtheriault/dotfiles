@@ -72,6 +72,7 @@ call plug#begin()
 call plug#end()
 
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Plugins: Pathogen
 execute pathogen#infect()
