@@ -73,6 +73,7 @@ call plug#end()
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Plugins: Pathogen
 execute pathogen#infect()
