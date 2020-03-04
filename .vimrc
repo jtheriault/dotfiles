@@ -60,6 +60,19 @@ inoremap <C-space> <C-x><C-o>
 " File: Ignore certain paths
 set wildignore+=*/.git/*,*/node_modules/*
 
+" Plugins: vim-plug >>>
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin()
+
+" Plugins: vim-plug <<<
+call plug#end()
+
+Plug 'scrooloose/nerdtree'
+
 " Plugins: Pathogen
 execute pathogen#infect()
 
