@@ -8,6 +8,3 @@
 [submodule "Extensions/rsync-time-backup/rsync-time-backup"]
 	path = Extensions/rsync-time-backup
 	url = https://github.com/laurent22/rsync-time-backup.git
-[submodule "/home/jtheriault/.vim/bundle/rust.vim"]
-	path = .vim/bundle/rust.vim
-	url = https://github.com/rust-lang/rust.vim.git

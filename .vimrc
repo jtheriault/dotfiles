@@ -76,6 +76,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/syntastic'
 Plug 'schickling/vim-bufonly'
+Plug 'rust-lang/rust.vim'
 
 " Plugins: Pathogen
 execute pathogen#infect()
