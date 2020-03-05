@@ -52,11 +52,6 @@ set expandtab
 " Editing: Remove trailing spaces
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Editing: Omnicomplete
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete " All omnicomplete, all the time
-inoremap <C-space> <C-x><C-o>
-
 " File: Ignore certain paths
 set wildignore+=*/.git/*,*/node_modules/*
 
@@ -70,11 +65,11 @@ endif
 call plug#begin()
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/syntastic'
 Plug 'schickling/vim-bufonly'
 Plug 'rust-lang/rust.vim'
 Plug 'heavenshell/vim-jsdoc'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} | Plug 'neoclide/coc-tsserver' | Plug 'neoclide/coc-html' | Plug 'neoclide/coc-css' | Plug 'neoclide/coc-json' | Plug 'neoclide/coc-python' | Plug 'neoclide/coc-rls'
 call plug#end()
 
 " Plugins: NERDTree
@@ -109,3 +104,6 @@ let g:jsdoc_input_description = 1
 let g:jsdoc_param_description_separator = '-'
 let g:jsdoc_enable_es6 = 1
 nmap <silent> <C-l> <Plug>(jsdoc)
+
+" Plugins: CoC
+inoremap <silent><expr> <c-space> coc#refresh()
