@@ -60,17 +60,14 @@ inoremap <C-space> <C-x><C-o>
 " File: Ignore certain paths
 set wildignore+=*/.git/*,*/node_modules/*
 
-" Plugins: vim-plug >>>
+" Plugins: vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
 call plug#begin()
-
-" Plugins: vim-plug <<<
-call plug#end()
-
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidhalter/jedi-vim'
@@ -78,6 +75,7 @@ Plug 'scrooloose/syntastic'
 Plug 'schickling/vim-bufonly'
 Plug 'rust-lang/rust.vim'
 Plug 'heavenshell/vim-jsdoc'
+call plug#end()
 
 " Plugins: NERDTree
 map <C-n> :NERDTreeToggle <CR>
