@@ -1,0 +1,13 @@
+split -v
+resize 180
+screen
+
+focus
+split
+title status
+screen
+stuff "watch git status^m"
+focus
+
+screen
+stuff "short_prompt^m^l"

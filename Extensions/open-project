@@ -23,6 +23,8 @@ PROJECT_TYPE=plain
 if [ -f package.json ]; then
     PROJECT_TYPE=npm
     npm ci
+elif [ -d .git ]; then
+    PROJECT_TYPE=git
 fi
 
 if [ "$START_EDITOR" = "true" ]; then
