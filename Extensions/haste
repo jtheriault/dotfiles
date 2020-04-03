@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "https://hastebin/$(curl -s -XPOST https://hastebin.com/documents -d @- | cut -d '"' -f4)"
