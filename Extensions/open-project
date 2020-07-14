@@ -1,5 +1,5 @@
 #!/bin/bash
-PROJECT=$1
+PROJECT=${1:-$PWD}
 START_EDITOR=true
 if [ "$2" = "--no-vim" ]; then
     START_EDITOR=false
@@ -23,6 +23,8 @@ PROJECT_TYPE=plain
 if [ -f package.json ]; then
     PROJECT_TYPE=npm
     npm ci
+elif [ -f Cargo.toml ]; then
+    PROJECT_TYPE=rust
 elif [ -d .git ]; then
     PROJECT_TYPE=git
 fi
