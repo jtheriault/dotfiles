@@ -1,0 +1,22 @@
+split -v
+resize 180
+title start
+screen
+stuff "cargo start^m"
+split
+resize 10
+
+focus
+title test
+screen
+stuff "cargo test^m"
+
+focus
+split
+title status
+screen
+stuff "watch git status^m"
+focus
+
+screen
+stuff "short_prompt^m^l"
