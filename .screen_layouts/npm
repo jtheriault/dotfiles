@@ -9,7 +9,7 @@ resize 10
 focus
 title test
 screen
-stuff "npm run test:live || npm run test:watch^m"
+stuff "npm run test:live || npm run test:watch || npm test^m"
 
 focus
 split
