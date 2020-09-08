@@ -2,9 +2,6 @@
 	path = Extensions/nvm/nvm
 	url = https://github.com/creationix/nvm.git
 	branch = master
-[submodule ".vim/bundle/vim-pug"]
-	path = .vim/bundle/vim-pug
-	url = https://github.com/digitaltoad/vim-pug.git
 [submodule "Extensions/rsync-time-backup/rsync-time-backup"]
 	path = Extensions/rsync-time-backup
 	url = https://github.com/laurent22/rsync-time-backup.git
