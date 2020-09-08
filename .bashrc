@@ -59,10 +59,11 @@ _dotfiles_track() {
 }
 
 source_bashrc_dir() {
-    for bashrc in $(ls -A1 $BASHRC_DIR)
+    BASHRC_DIR="$1"
+    for bashrc in "$BASHRC_DIR"/*
     do
-        source $BASHRC_DIR/$bashrc
+        source $bashrc
     done
 }
 
-source_bashrc_dir $BASHRC_DIR
+source_bashrc_dir "$BASHRC_DIR"
