@@ -1,0 +1,35 @@
+#!/bin/bash
+BACKUP_CONFIG="${HOME}/.backups_mount"
+BACKUP_EXEC="$(dirname ${BASH_SOURCE})/rsync-time-backup/rsync_tmbackup.sh"
+BACKUP_MOUNT_POINT=$(if [ -f "$BACKUP_CONFIG" ]; then cat "$BACKUP_CONFIG"; fi)
+
+if [ ! -f "$BACKUP_CONFIG" ]; then
+    printf "backup-home
+[ERROR] Cannot perform backup: no configuration provided!
+[ERROR] Please specify backup destination folder in %s
+" "$BACKUP_CONFIG"
+
+exit 1
+fi
+
+if [ -z "$BACKUP_MOUNT_POINT" ]; then
+    printf "backup-home
+[ERROR] Cannot perform backup: no destination provided!
+[ERROR] Please specify backup destination folder in %s
+" "$BACKUP_CONFIG"
+
+exit 1
+fi
+
+if ! mount | grep "$BACKUP_MOUNT_POINT" > /dev/null; then
+    printf "backup-home
+[LOG] Cannot perform backup: drive not attached to mount point
+[LOG] Exiting without backup
+"
+
+exit 0
+fi
+
+ BACKUP_DESTINATION="${BACKUP_MOUNT_POINT}/$(whoami)/"
+
+ $BACKUP_EXEC "$HOME" "$BACKUP_DESTINATION"
