@@ -12,4 +12,7 @@ startup_message off
 termcapinfo xterm* ti@:te@
 defscrollback 10000
 
+register s "^a:at '#' stuff "
+bind ; process s
+
 source .screen_layout
