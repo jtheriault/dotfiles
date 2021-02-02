@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+MAX_SIZE="10M"
+SLEEP=1
+
+get_sum() {
+    find "$PWD" -type f -size -$MAX_SIZE -exec sha512sum {} ";" | sha512sum
+}
+
+COMMAND="$1"
+
+while true; do
+    NEW_SUM=$(get_sum)
+
+    if [ "$LAST_SUM" != "$NEW_SUM" ]; then
+        eval "$COMMAND"
+    fi
+
+    LAST_SUM=$NEW_SUM
+    sleep $SLEEP
+done
