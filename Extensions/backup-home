@@ -30,6 +30,6 @@ if ! mount | grep "$BACKUP_MOUNT_POINT" > /dev/null; then
 exit 0
 fi
 
- BACKUP_DESTINATION="${BACKUP_MOUNT_POINT}/$(whoami)/"
+BACKUP_DESTINATION="${BACKUP_MOUNT_POINT}/$(hostname)-$(whoami)/"
 
  $BACKUP_EXEC "$HOME" "$BACKUP_DESTINATION"
