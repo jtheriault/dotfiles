@@ -9,7 +9,7 @@ resize 10
 focus
 title test
 screen
-stuff "cargo test^m"
+stuff "watchdir src cargo test^m"
 
 focus
 split
