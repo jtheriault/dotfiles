@@ -1,0 +1,25 @@
+split -v
+resize 180
+title start
+screen
+stuff "source env/bin/activate^m"
+stuff "make run^m"
+split
+resize 10
+
+focus
+title test
+screen
+stuff "source env/bin/activate^m"
+stuff "watchdir src make test^m"
+
+focus
+split
+title status
+screen
+stuff "watch git status^m"
+focus
+
+screen
+stuff "source env/bin/activate^m"
+stuff "short_prompt^m^l"
