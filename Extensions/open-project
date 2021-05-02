@@ -23,8 +23,12 @@ PROJECT_TYPE=plain
 if [ -f package.json ]; then
     PROJECT_TYPE=npm
     npm ci
-elif [ -f requirements.txt ] && [ -d env ] && [ -f Makefile ]; then
-    PROJECT_TYPE=python-venv-make
+elif [ -f requirements.txt ] && [ -f Makefile ]; then
+    PROJECT_TYPE=python-make
+
+    if [ ! -d env ]; then
+        python -m venv env
+    fi
 elif [ -f Cargo.toml ]; then
     PROJECT_TYPE=rust
 elif [ -d .git ]; then
