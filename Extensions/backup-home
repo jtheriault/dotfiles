@@ -1,22 +1,39 @@
 #!/bin/bash
-BACKUP_CONFIG="${HOME}/.backups_mount"
-BACKUP_EXEC="$(dirname ${BASH_SOURCE})/rsync-time-backup/rsync_tmbackup.sh"
-BACKUP_MOUNT_POINT=$(if [ -f "$BACKUP_CONFIG" ]; then cat "$BACKUP_CONFIG"; fi)
+BACKUP_CONFIG="${HOME}/.backup-home"
+BACKUP_EXEC="$(dirname "${BASH_SOURCE[0]}")/rsync-time-backup/rsync_tmbackup.sh"
 
-if [ ! -f "$BACKUP_CONFIG" ]; then
+usage() {
+    printf "Usage: %s [-h]
+
+Configuration can be provided in by the following files in
+%s:
+
+- excludes   An rsync exclude-from file [optional]
+- mount     Contains the directory to confirm the backup disk is mounted
+" "$(basename "$0")" "$BACKUP_CONFIG"
+}
+
+if [ "$1" == "-h" ]; then
+    usage
+    exit 0
+fi
+
+BACKUP_MOUNT_POINT_CONFIG="${BACKUP_CONFIG}/mount"
+if [ ! -f "$BACKUP_MOUNT_POINT_CONFIG" ]; then
     printf "backup-home
 [ERROR] Cannot perform backup: no configuration provided!
 [ERROR] Please specify backup destination folder in %s
-" "$BACKUP_CONFIG"
+" "$BACKUP_MOUNT_POINT_CONFIG"
 
 exit 1
 fi
 
+BACKUP_MOUNT_POINT=$(if [ -f "$BACKUP_MOUNT_POINT_CONFIG" ]; then cat "$BACKUP_MOUNT_POINT_CONFIG"; fi)
 if [ -z "$BACKUP_MOUNT_POINT" ]; then
     printf "backup-home
 [ERROR] Cannot perform backup: no destination provided!
 [ERROR] Please specify backup destination folder in %s
-" "$BACKUP_CONFIG"
+" "$BACKUP_MOUNT_POINT_CONFIG"
 
 exit 1
 fi
@@ -32,4 +49,9 @@ fi
 
 BACKUP_DESTINATION="${BACKUP_MOUNT_POINT}/$(hostname)-$(whoami)/"
 
- $BACKUP_EXEC "$HOME" "$BACKUP_DESTINATION"
+BACKUP_EXCLUDES_FILE=
+if [ -f "$BACKUP_CONFIG/excludes" ]; then
+    BACKUP_EXCLUDES_FILE="$BACKUP_CONFIG/excludes"
+fi
+
+$BACKUP_EXEC "$HOME" "$BACKUP_DESTINATION" "$BACKUP_EXCLUDES_FILE"
