@@ -2,7 +2,7 @@ split -v
 resize 180
 title start
 screen
-stuff "cargo start^m"
+stuff "cargo run^m"
 split
 resize 10
 
