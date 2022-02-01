@@ -1,7 +1,7 @@
 #!/bin/bash
 PROJECT=${1:-$PWD}
 START_EDITOR=true
-if [ "$2" = "--no-vim" ]; then
+if [ "$2" = "--no-vim" ] || [ "$2" = "--no-edit" ]; then
     START_EDITOR=false
 fi
 
@@ -17,6 +17,10 @@ cd "$PROJECT_PATH" || exit 1
 
 # Set terminal title
 echo -ne "\033]0;$(basename "$PWD")\007"
+
+# TODO: If git clean/up to date
+    # If not default branch, offer to switch
+    # pull
 
 # Project-type Steps
 PROJECT_TYPE=plain

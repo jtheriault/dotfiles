@@ -1,5 +1,5 @@
 split -v
-resize 180
+resize 100
 title start
 screen
 stuff "npm start^m"
