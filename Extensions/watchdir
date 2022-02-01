@@ -3,7 +3,9 @@ MAX_SIZE="10M"
 SLEEP=1
 
 get_sum() {
-    find "$PWD" -type f -size -$MAX_SIZE -exec shasum {} ";" | shasum
+    DIRECTORY=$1
+
+    find "$DIRECTORY" -type f -size -$MAX_SIZE -exec shasum {} ";" | shasum
 }
 
 DIRECTORY="$1"
@@ -18,7 +20,7 @@ COMMAND="$*"
 echo "Executing $COMMAND"
 
 while true; do
-    NEW_SUM=$(get_sum)
+    NEW_SUM=$(get_sum "$DIRECTORY")
 
     if [ "$LAST_SUM" != "$NEW_SUM" ]; then
         eval "$COMMAND"
