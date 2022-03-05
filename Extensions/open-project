@@ -45,6 +45,6 @@ if [ "$START_EDITOR" = "true" ]; then
 fi
 
 # Start screen
-[ ! -f .screen_layout ] && [ -f ~/.screen_layouts/$PROJECT_TYPE ] && cp ~/.screen_layouts/$PROJECT_TYPE ./.screen_layout
+[ ! -f .screen_layout ] && [ -f ~/.screen_layouts/$PROJECT_TYPE ] && ln -s ~/.screen_layouts/$PROJECT_TYPE ./.screen_layout
 screen
 
