@@ -1,6 +1,7 @@
 split -v
-resize 180
+resize 100
 screen
+stuff "if [[ -d src && -f scripts/test ]]; then watchdir src/ scripts/test; fi^m"
 
 focus
 split
