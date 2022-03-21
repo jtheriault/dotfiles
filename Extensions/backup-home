@@ -47,6 +47,22 @@ if ! mount | grep "$BACKUP_MOUNT_POINT" > /dev/null; then
 exit 0
 fi
 
+if [ -f "${BACKUP_CONFIG}/remote-test" ] && [ -f "${BACKUP_CONFIG}/remote-copy" ]; then
+    REMOTE_BACKUP_ENABLED=true
+
+    if $BACKUP_CONFIG/remote-test; then
+        read -rsp "To copy the backup to a remote location, provide the encryption password: " ENCRYPTION_PASSWORD
+        echo
+    else
+        echo "Remote backup is currently unavailable."
+    fi
+else
+    printf "backup-home
+[LOG] No configuration provided for remote backup.
+[LOG] Continuing with attached-only backup.
+"
+fi
+
 BACKUP_DESTINATION="${BACKUP_MOUNT_POINT}/$(hostname)-$(whoami)/"
 
 BACKUP_EXCLUDES_FILE=
@@ -55,3 +71,21 @@ if [ -f "$BACKUP_CONFIG/excludes" ]; then
 fi
 
 $BACKUP_EXEC "$HOME" "$BACKUP_DESTINATION" "$BACKUP_EXCLUDES_FILE"
+
+if [ -n "$ENCRYPTION_PASSWORD" ]; then
+    LATEST_NAME=$(readlink "$BACKUP_DESTINATION/latest")
+
+    echo "Archiving latest backup"
+    ARCHIVE_FILE_PATH="${BACKUP_DESTINATION}latest.tar.gz"
+    tar czf "$ARCHIVE_FILE_PATH" -C "$BACKUP_DESTINATION" "${LATEST_NAME}"
+
+    echo "Encrypting archive"
+    ENCRYPTED_FILE_PATH="${BACKUP_DESTINATION}${LATEST_NAME}.tar.gz"
+    openssl enc -e -aes256 -salt -k "$ENCRYPTION_PASSWORD" -in "${ARCHIVE_FILE_PATH}" -out "$ENCRYPTED_FILE_PATH"
+    unset ENCRYPTION_PASSWORD
+    rm "$ARCHIVE_FILE_PATH"
+
+    echo "Copying encrypted archive to remote location"
+    $BACKUP_CONFIG/remote-copy "$ENCRYPTED_FILE_PATH"
+    rm "$ENCRYPTED_FILE_PATH"
+fi
