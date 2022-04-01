@@ -70,6 +70,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'rust-lang/rust.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} | Plug 'neoclide/coc-tsserver' | Plug 'neoclide/coc-html' | Plug 'neoclide/coc-css' | Plug 'neoclide/coc-json' | Plug 'neoclide/coc-python' | Plug 'neoclide/coc-rls'
+Plug 'wellle/context.vim'
 call plug#end()
 
 " Plugins: NERDTree
