@@ -1,0 +1,90 @@
+# ci_cached_npm
+#
+# This aliases npm to augment commands that update package-lock.json by
+# archiving node_modules into a local cache, and replace `npm ci` to use that
+# archive when possible.
+#
+# To configure the TTL of files in the cache, export CCN_CACHE_TTL_DAYS on
+# your environment
+
+CCN_CACHE_DIR="$HOME/.cache/ci_cached_npm"
+
+_ccn_get_cache_filename() {
+    HASH="$(shasum package-lock.json | cut -d ' ' -f1)"
+
+    echo "$CCN_CACHE_DIR/$HASH.tgz"
+}
+
+_ccn_real_npm() {
+    REAL_NPM="$(which npm)"
+
+
+    $REAL_NPM $*
+}
+
+_ccn_pid_progress() {
+    while ps $1 > /dev/null; do
+        printf "\r-"
+        sleep 0.1
+        printf "\r\\"
+        sleep 0.1
+        printf "\r|"
+        sleep 0.1
+        printf "\r/"
+        sleep 0.1
+    done
+
+    printf "\rDone\n"
+}
+
+_ccn_prune_cache() {
+    find "$CCN_CACHE_DIR" -mtime "${CCN_CACHE_TTL_DAYS:-14}" -exec rm "{}" \;
+}
+
+_ccn_update_cache() {
+    mkdir -p $CCN_CACHE_DIR
+
+    if [ -f package-lock.json ]; then
+        tar czf "$(_ccn_get_cache_filename)" node_modules/
+    fi
+}
+
+_ccn_ci_cached_npm() {
+    NPM_COMMAND=$1
+
+    case $NPM_COMMAND in
+    audit)
+        _ccn_real_npm $*
+        if [ "$2" == "fix" ]; then
+            _ccn_update_cache
+        fi
+        ;;
+    i|install)
+        _ccn_real_npm $*
+        _ccn_update_cache
+        ;;
+    ci|clean-install)
+        FILE=$(_ccn_get_cache_filename)
+
+        if [ -z "$2" ] && [ -f "$FILE" ]; then
+            if [ -d node_modules ]; then
+                echo "clearing node_modules"
+                mv node_modules node_modules.removing
+                rm -rf node_modules.removing &
+            fi
+
+            echo "Unpacking from cache"
+            tar xzf $FILE &
+            _ccn_pid_progress $!
+        else
+            _ccn_real_npm $*
+            _ccn_update_cache
+        fi
+        ;;
+    *)
+        $*;;
+    esac
+}
+
+if alias | grep npm > /dev/null ; then unalias npm; fi
+alias npm=_ccn_ci_cached_npm
