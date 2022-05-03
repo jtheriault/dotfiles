@@ -82,7 +82,8 @@ _ccn_ci_cached_npm() {
         fi
         ;;
     *)
-        $*;;
+        _ccn_real_npm $*
+        ;;
     esac
 }
 
