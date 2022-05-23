@@ -2,14 +2,14 @@ SSH_AGENT_SETUP=~/.ssh_agent
 
 ssh-agent-attach() {
     if [ -f $SSH_AGENT_SETUP ]; then
-        source $SSH_AGENT_SETUP 
+        source $SSH_AGENT_SETUP
     fi
 
     if ! ps -p $SSH_AGENT_PID &>/dev/null; then
         ssh-agent -s > $SSH_AGENT_SETUP
-        source $SSH_AGENT_SETUP 
+        source $SSH_AGENT_SETUP
 
-        for key in $(ls ~/.ssh/*.pub); do 
+        for key in $(ls ~/.ssh/*.pub); do
             ssh-add ${key%.*}
         done
     fi
@@ -20,5 +20,6 @@ ssh-agent-detach() {
     rm $SSH_AGENT_SETUP
 }
 
-# Attach to agent by default
-ssh-agent-attach
+# Attach to agent by default in an interactive shell
+case "$-" in *i*) ssh-agent-attach ;; esac
+
