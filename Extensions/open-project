@@ -26,7 +26,9 @@ echo -ne "\033]0;$(basename "$PWD")\007"
 PROJECT_TYPE=plain
 if [ -f package.json ]; then
     PROJECT_TYPE=npm
-    npm ci
+    if [ ! -d node_modules ]; then
+        npm ci;
+    fi
 elif [ -f requirements.txt ] && [ -f Makefile ]; then
     PROJECT_TYPE=python-make
 
