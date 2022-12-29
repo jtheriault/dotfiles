@@ -1,0 +1,144 @@
+snippet s1 "A simple, lazy-loaded JavaScript singleton" !b
+const PRIVATE_CONSTRUCTOR_VALUE = Symbol('This is a private constructor');
+let instance = null;
+
+export class ${1:Service} {
+    static getInstance () {
+        if (instance === null) {
+            instance = new $1(PRIVATE_CONSTRUCTOR_VALUE);
+        }
+
+        return instance;
+    }
+
+    constructor (validation) {
+        if (validation !== PRIVATE_CONSTRUCTOR_VALUE) {
+            throw new Error('$1 has a private constructor. Use static getInstance method.');
+        }
+    }
+}
+endsnippet
+
+snippet s1test "Tests for a simple, lazy-loaded JavaScript singleton" !b
+import { ${1:Service} } from './index';
+
+describe('${2:Description}', () => {
+    beforeEach(() => {
+    });
+
+    describe('singleton', () => {
+        it('should be accessible via a static getInstance method', () => {
+            const result = $1.getInstance();
+
+            expect(result).toEqual(jasmine.any($1));
+        });
+
+        it('should provide the same instance across multiple calls', () => {
+            const first = $1.getInstance();
+            const second = $1.getInstance();
+
+            expect(first).toBe(second);
+        });
+
+        it('should have a private constructor', () => {
+            expect(() => new $1()).toThrow();
+        });
+    });
+
+});
+endsnippet
+
+snippet s1init "An initialized JavaScript singleton" !b
+const PRIVATE_CONSTRUCTOR_VALUE = Symbol('This is a private constructor');
+let instance = null;
+
+export function __reset () {
+    instance = null;
+}
+
+export class ${1:Service} {
+    static getInstance () {
+        if (instance === null) {
+            throw new ReferenceError('No instance of $1 available. Call static initialize method first.');
+        }
+
+        return instance;
+    }
+
+    static initialize (options) {
+        if (instance !== null) {
+            throw new Error('$1 is already initialized. Use static getInstance method to access the instance.');
+        }
+
+        instance = new $1(PRIVATE_CONSTRUCTOR_VALUE, options);
+    }
+
+    constructor (validation, options) {
+        if (validation !== PRIVATE_CONSTRUCTOR_VALUE) {
+            throw new Error('$1 has a private constructor. Use static getInstance method.');
+        }
+    }
+}
+endsnippet
+
+snippet s1jsinittest "Tests for an initialized JavaScript singleton" !b
+import {
+    __reset,
+    ${1:Service}
+} from './index';
+
+describe('${2:Description}', () => {
+    let options;
+
+    beforeEach(() => {
+        options = {
+        };
+
+        $1.initialize(options);
+    });
+
+    afterEach(() => {
+        __reset();
+    });
+
+    describe('singleton', () => {
+        it('should throw instead of initializing more than once', () => {
+            expect(() => $1.initialize(options)).toThrowError(/initialized/);
+        });
+
+        it('should be accessible via a static getInstance method', () => {
+            const result = $1.getInstance();
+
+            expect(result).toEqual(jasmine.any($1));
+        });
+
+        it('should provide the same instance across multiple calls', () => {
+            const first = $1.getInstance();
+            const second = $1.getInstance();
+
+            expect(first).toBe(second);
+        });
+
+        it('should have a private constructor', () => {
+            expect(() => new $1()).toThrow();
+        });
+
+        it('should be resetable for internal usage', () => {
+            const first = $1.getInstance();
+
+            __reset();
+            $1.initialize(options);
+
+            const second = $1.getInstance();
+
+            expect(first).not.toBe(second);
+        });
+
+        it('should throw when getting an instance before initialization', () => {
+            __reset();
+
+            expect(() => $1.getInstance()).toThrowError(ReferenceError);
+        });
+    });
+});
+endsnippet

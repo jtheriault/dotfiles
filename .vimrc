@@ -66,10 +66,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
-Plug 'schickling/vim-bufonly'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'rust-lang/rust.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} | Plug 'neoclide/coc-tsserver' | Plug 'neoclide/coc-html' | Plug 'neoclide/coc-css' | Plug 'neoclide/coc-json' | Plug 'neoclide/coc-python' | Plug 'neoclide/coc-rls'
@@ -81,7 +82,7 @@ call plug#end()
 " Plugins: NERDTree
 map <C-n> :NERDTreeToggle <CR>
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeChDirMode=2
+let g:NERDTreeChDirMode = 2
 runtime ~/.vim/bundle/nerdtree-git-plugin/nerdtree_plugin/git_status.vim
 "autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p " Refresh on writes
 
@@ -116,6 +117,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Plugins: UltiSnips
 " Ref: https://bhupesh.me/learn-how-to-use-code-snippets-vim-cowboy/
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-enter>"
 let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME.'/.vim/my-snippets']
 

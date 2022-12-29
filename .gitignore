@@ -18,6 +18,7 @@
 !/.vim/
 !/.vim/*
 !/.vim/bundle/*
+!/.vim/my-snippets/*
 /.vim/.netrwhist
 
 # there will also be the occasional add-on script, binary or library
