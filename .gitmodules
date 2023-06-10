@@ -5,3 +5,6 @@
 [submodule "Extensions/rsync-time-backup/rsync-time-backup"]
 	path = Extensions/rsync-time-backup
 	url = https://github.com/laurent22/rsync-time-backup.git
+[submodule "Extensions/chatgpt-shell-cli"]
+	path = Extensions/chatgpt-shell-cli
+	url = https://github.com/0xacx/chatGPT-shell-cli.git
