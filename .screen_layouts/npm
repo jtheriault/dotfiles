@@ -19,5 +19,5 @@ stuff "watch git status^m"
 focus
 
 screen
-resize -h 100
+resize -h 75
 stuff "short_prompt^m^l"
