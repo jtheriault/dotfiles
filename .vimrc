@@ -58,6 +58,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " File: Ignore certain paths
 set wildignore+=*/.git/*,*/node_modules/*
 
+" Allow local directory overrides
+set exrc
+
 " Plugins: vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -66,6 +69,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+Plug 'editorconfig/editorconfig-vim'
 Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
