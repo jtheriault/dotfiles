@@ -9,6 +9,9 @@ set directory=~/.vim/swap//
 nnoremap <C-Tab> : bnext<CR>
 nnoremap <S-C-Tab> : bprevious<CR>
 
+" GUI: use mouse in "all" modes
+set mouse=a
+
 " GUI: no toolbar
 set guioptions -=T
 
@@ -74,7 +77,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe' " .vim/plugged/YouCompleteMe/install.py --ts-completer --rust-completer --clangd-completer
 Plug 'rust-lang/rust.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} | Plug 'neoclide/coc-tsserver' | Plug 'neoclide/coc-html' | Plug 'neoclide/coc-css' | Plug 'neoclide/coc-json' | Plug 'neoclide/coc-python' | Plug 'neoclide/coc-rls'
