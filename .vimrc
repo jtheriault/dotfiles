@@ -72,16 +72,25 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+" Editing
 Plug 'editorconfig/editorconfig-vim'
 Plug 'schickling/vim-bufonly'
+Plug 'wellle/context.vim'
+
+" Navigation
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Syntax
 Plug 'scrooloose/syntastic'
-Plug 'ycm-core/YouCompleteMe' " .vim/plugged/YouCompleteMe/install.py --ts-completer --rust-completer --clangd-completer
 Plug 'rust-lang/rust.vim'
-Plug 'heavenshell/vim-jsdoc'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} | Plug 'neoclide/coc-tsserver' | Plug 'neoclide/coc-html' | Plug 'neoclide/coc-css' | Plug 'neoclide/coc-json' | Plug 'neoclide/coc-python' | Plug 'neoclide/coc-rls'
-Plug 'wellle/context.vim'
+
+" Snippets
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
