@@ -58,6 +58,10 @@ set expandtab
 " Editing: Remove trailing spaces
 autocmd BufWritePre * :%s/\s\+$//e
 
+" Editing: Set split and vsplit preferences
+set splitright
+set splitbelow
+
 " File: Ignore certain paths
 set wildignore+=*/.git/*,*/node_modules/*
 
