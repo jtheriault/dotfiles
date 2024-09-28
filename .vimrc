@@ -16,7 +16,7 @@ set mouse=a
 set guioptions -=T
 
 " Visual: Theme
-colorscheme desert "murphy darkblue desert
+colorscheme sorbet "increasing contrast: habamax sorbet evening koehler
 
 " Visual: Line numbers
 set number
