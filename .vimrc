@@ -80,6 +80,7 @@ call plug#begin()
 Plug 'editorconfig/editorconfig-vim'
 Plug 'schickling/vim-bufonly'
 Plug 'wellle/context.vim'
+Plug 'github/copilot.vim' " Run :Copilot setup
 
 " Navigation
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -98,6 +99,9 @@ Plug 'heavenshell/vim-jsdoc', {
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
+
+" Plugins: Copilot
+let g:copilot_workspace_folders = ['~/Code']
 
 " Plugins: NERDTree
 map <C-n> :NERDTreeToggle <CR>
