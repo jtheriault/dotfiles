@@ -41,6 +41,11 @@ map <silent> <Esc> :noh<CR>
 " Visual: Syntax highlighting
 autocmd BufReadPost *.html.js set syntax=html
 
+" Visual: Folding
+set foldmethod=indent
+autocmd BufNew * normal zR
+autocmd BufRead * normal zR
+
 " Editing: Save me from myself
 if has('persistent_undo')
     set undofile
