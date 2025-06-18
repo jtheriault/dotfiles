@@ -45,6 +45,7 @@ autocmd BufReadPost *.html.js set syntax=html
 set foldmethod=indent
 autocmd BufNew * normal zR
 autocmd BufRead * normal zR
+nnoremap <space> za
 
 " Editing: Save me from myself
 if has('persistent_undo')
@@ -94,7 +95,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Syntax
 Plug 'scrooloose/syntastic'
 Plug 'rust-lang/rust.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} | Plug 'neoclide/coc-tsserver' | Plug 'neoclide/coc-html' | Plug 'neoclide/coc-css' | Plug 'neoclide/coc-json' | Plug 'neoclide/coc-python' | Plug 'neoclide/coc-rls' " brew install watchman
+Plug 'neoclide/coc.nvim', {'branch': 'release'} | Plug 'neoclide/coc-tsserver' | Plug 'neoclide/coc-html' | Plug 'neoclide/coc-css' | Plug 'neoclide/coc-json' | Plug 'neoclide/coc-python' | Plug 'fannheyward/coc-rust-analyzer' " brew install watchman
 
 " Snippets
 Plug 'heavenshell/vim-jsdoc', {
