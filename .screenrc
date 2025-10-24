@@ -15,4 +15,7 @@ defscrollback 10000
 register s "^a:at '#' stuff "
 bind ; process s
 
+register q "^a:at '#' stuff \"\^c\^m\^d\^m\"^m"
+bind q process q
+
 source .screen_layout
