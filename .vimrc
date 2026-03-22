@@ -1,3 +1,6 @@
+" To initialize a new environment, search for "Setup:" and follow the
+" instructions.
+
 " Keep artifact files tidy
 if has('persistent_undo')
     set undodir=~/.vim/undo//
@@ -86,7 +89,7 @@ call plug#begin()
 Plug 'editorconfig/editorconfig-vim'
 Plug 'schickling/vim-bufonly'
 Plug 'wellle/context.vim'
-Plug 'github/copilot.vim' " Run :Copilot setup
+Plug 'github/copilot.vim' " Setup: :Copilot setup
 
 " Navigation
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -126,13 +129,13 @@ let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:25'
 
 " Plugins: Syntastic
-let g:syntastic_css_checkers = ["stylelint"]                " npm i -g stylelint
-let g:syntastic_dockerfile_checkers = ["dockerfile_lint"]   " npm i -g dockerfile_lint
-let g:syntastic_javascript_checkers = ["eslint"]            " npm i -g eslint
-let g:syntastic_json_checkers = ["eslint"]                  " npm i -g eslint
+let g:syntastic_css_checkers = ["stylelint"]                " Setup: npm i -g stylelint
+let g:syntastic_dockerfile_checkers = ["dockerfile_lint"]   " Setup: npm i -g dockerfile_lint
+let g:syntastic_javascript_checkers = ["eslint"]            " Setup: npm i -g eslint
+let g:syntastic_json_checkers = ["eslint"]                  " Setup: npm i -g eslint
 let g:syntastic_python_checkers = ["python"]
 let g:syntastic_sass_checkers = ["stylelint"]
-let g:syntastic_sh_checkers = ["shellcheck"]                " apt-get install shellcheck || brew install shellcheck
+let g:syntastic_sh_checkers = ["shellcheck"]                " Setup: apt-get install shellcheck || brew install shellcheck
 let g:syntastic_yaml_checkers = ["jsyaml"]
 
 " Plugins: JSDoc
