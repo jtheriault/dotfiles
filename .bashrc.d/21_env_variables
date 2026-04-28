@@ -1,0 +1,4 @@
+# https://github.blog/changelog/2026-04-22-github-cli-opt-out-usage-telemetry
+export DO_NOT_TRACK=true
+
+export EDITOR=vim

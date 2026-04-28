@@ -61,12 +61,32 @@ elif [ "$HOST_CAUTION_LEVEL" = "SAFE" ]; then
     HOST_FORMAT=$FORMAT_COLOR_GREEN
 fi
 
+default_prompt() {
+    if [ "${#PWD}" -lt 80 ]; then
+        set_long_prompt
+    else
+        set_medium_prompt
+    fi
+}
+
 long_prompt() {
-    PROMPT_COMMAND='PS1="$(exit_code_mark) $HOST_FORMAT\h$FORMAT_RESET:\w $(git_branch)$(git_status_short)$ "'
+    PROMPT_COMMAND='set_long_prompt'
+}
+
+medium_prompt() {
+    PROMPT_COMMAND='set_medium_prompt'
+}
+
+set_long_prompt() {
+    PS1="$(exit_code_mark) $HOST_FORMAT\h$FORMAT_RESET:\w $(git_branch)$(git_status_short)$ "
+}
+
+set_medium_prompt() {
+    PS1="$(exit_code_mark) $HOST_FORMAT\h$FORMAT_RESET:\W $(git_branch)$(git_status_short)$ "
 }
 
 short_prompt() {
     PROMPT_COMMAND='PS1="$(exit_code_mark) $HOST_FORMAT\$$FORMAT_RESET "'
 }
 
-long_prompt
+PROMPT_COMMAND='default_prompt'
